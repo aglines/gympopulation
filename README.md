@@ -9,4 +9,9 @@ Components:
 Tech I hope to learn:
 - AWS
 - VM
-- Graphical rendering of data
+- Ubuntu (could use Windows, might revert to that just to get the app done)
+- Graphical rendering of data (d3? unknown)
+
+Tech I already am familiar with:
+- Selenium (headless? that'd be new)
+- SQLite
