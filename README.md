@@ -15,3 +15,6 @@ Tech I hope to learn:
 Tech I already am familiar with:
 - Selenium (headless? that'd be new)
 - SQLite
+
+
+
