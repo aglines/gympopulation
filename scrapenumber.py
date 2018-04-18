@@ -10,6 +10,8 @@ import sqlite3
 import time
 from datetime import datetime
 
+notActuallyAnError = ''
+
 db = sqlite3.connect(dbLocation)
 cursor = db.cursor()
 
@@ -88,7 +90,7 @@ try:
     cursor.execute('''INSERT INTO times (timestamp, pop, readabletimestamp)
                     VALUES (?,?,?)''', (currTime, currPop, stringifiedCurrTime))
     db.commit()
-    logEvent('All OK. Current pop: ' + currPop)
+    logEvent(notActuallyAnError + 'All OK. Current pop: ' + currPop)
 except:
     errorLog = 'error during db insert statement'
     logEvent(errorLog)
