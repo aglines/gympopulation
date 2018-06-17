@@ -10,18 +10,14 @@ import sqlite3
 import time
 from datetime import datetime
 
-notActuallyAnError = ''
-
 db = sqlite3.connect(dbLocation)
 cursor = db.cursor()
-
 
 def logEvent(currEventStatus):
     stringifiedCurrTime = str(datetime.now())
     cursor.execute('''INSERT INTO eventlog (timestamp, event)
                 VALUES (?,?)''', (stringifiedCurrTime, currEventStatus))
     db.commit()
-
 
 # get webdriver/chrome to start
 try:
@@ -63,8 +59,7 @@ except:
 
 # scrape data
 try:
-    currPop = driver.find_element_by_xpath(
-        '//*[@id="main-content"]/div[2]/div/div/div[1]/div/div/div/div[1]/div/p[1]/span')
+    currPop = driver.find_element_by_xpath('//*[@id="main-content"]/div[2]/div/div/div[1]/div/div/div/div[1]/div/p[1]/span')
 except:
     errorLog = 'Error during data scrape'
     logEvent(errorLog)
@@ -81,16 +76,16 @@ if (matchedNumber):
     currPop = matchedNumber.group()
 elif (matchedFewer):
     currPop = matchedFewer.group()
-elif (matchedMore):
+elif (matchedMore) :
     currPop = matchedMore.group()
-
+    
 try:
     currTime = time.time()
     stringifiedCurrTime = str(datetime.now())
     cursor.execute('''INSERT INTO times (timestamp, pop, readabletimestamp)
                     VALUES (?,?,?)''', (currTime, currPop, stringifiedCurrTime))
     db.commit()
-    logEvent(notActuallyAnError + 'All OK. Current pop: ' + currPop)
+    logEvent('All OK. Current pop: ' + currPop)
 except:
     errorLog = 'error during db insert statement'
     logEvent(errorLog)
